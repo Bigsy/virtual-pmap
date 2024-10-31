@@ -11,7 +11,7 @@ A high-performance parallel mapping library for Clojure leveraging Java's Virtua
 Add the following to your `deps.edn`:
 
 ```clojure
-{:deps {virtual-pmap/virtual-pmap {:mvn/version "0.1.0"}}}
+{:deps {org.clojars.bigsy/virtual-pmap {:mvn/version "0.1.0"}}}
 ```
 
 ## Features
