@@ -1,0 +1,11 @@
+/.cpcache/
+/.idea/
+/.nrepl-port
+/classes/
+/env/
+*.DS_Store
+/target*
+/resources/apikey.txt
+/.lsp
+/.clj-kondo
+/*.iml
