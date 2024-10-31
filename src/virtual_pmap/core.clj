@@ -1,6 +1,6 @@
 (ns virtual-pmap.core
+  (:gen-class)
   (:import (java.util.concurrent Executors Future)))
-
 
 (defn vpmap
   "Like map, but f is applied in parallel using Java virtual threads.
@@ -45,3 +45,13 @@
                    (finally
                       (.close executor)))]
      results)))
+
+(defn -main [& args]
+  (println "Virtual PMap Example:")
+  (let [numbers (range 10)
+        result (vpmap #(do 
+                        (Thread/sleep 100) 
+                        (* % %)) 
+                     numbers)]
+    (println "Squaring numbers in parallel:" result))
+  (System/exit 0))
