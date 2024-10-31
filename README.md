@@ -42,9 +42,6 @@ Just like pmap
 ```
 
 ## Performance
-
-The library includes comprehensive performance tests that demonstrate significant improvements over traditional `pmap`:
-
 - Faster execution compared to Clojure's built-in `pmap`
 - More efficient resource utilization through Virtual Threads
 - Lower overhead for thread creation and management
