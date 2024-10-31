@@ -6,8 +6,7 @@
   "Like map, but f is applied in parallel using Java virtual threads.
    Semi-lazy in that the parallel computation stays ahead of consumption."
   ([f coll]
-   (let [n (count coll)
-         executor (Executors/newVirtualThreadPerTaskExecutor)
+   (let [executor (Executors/newVirtualThreadPerTaskExecutor)
          futures (try
                    (doall
                      (map-indexed #(.submit executor
@@ -45,13 +44,3 @@
                    (finally
                       (.close executor)))]
      results)))
-
-(defn -main [& args]
-  (println "Virtual PMap Example:")
-  (let [numbers (range 10)
-        result (vpmap #(do 
-                        (Thread/sleep 100) 
-                        (* % %)) 
-                     numbers)]
-    (println "Squaring numbers in parallel:" result))
-  (System/exit 0))

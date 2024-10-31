@@ -1,25 +1,31 @@
 {:min-bb-version "0.7.0"
  :paths          ["src" ".build"]
- :tasks          {:requires          ([babashka.fs :as fs]
-                                      [babashka.process :as p]
-                                      [clojure.string :as str]
-                                      [babashka.tasks :refer [shell]])
+ :tasks          {:requires ([babashka.fs :as fs]
+                             [babashka.process :as p]
+                             [clojure.string :as str]
+                             [babashka.tasks :refer [shell]])
 
-                  clean              {:doc              "clean build"
-                                      :override-builtin true
-                                      :task             (do (shell {:dir "."} "clojure -T:build clean"))}
+                  clean     {:doc              "clean build"
+                             :override-builtin true
+                             :task             (do (shell {:dir "."} "clojure -T:build clean"))}
 
-                  test               {:doc  "runs tests"
-                                      :task (shell {:dir "."} "clojure -M:test")}
+                  test      {:doc  "runs tests"
+                             :task (shell {:dir "."} "clojure -M:test")}
 
-                  uberjar            {:doc              "builds the uberjar"
-                                      :override-builtin true
-                                      :task             (shell {:dir "."} "clojure -T:build uber")}
+                  pom       {:doc  "pom"
+                             :task (shell {:dir "."} "clojure -Spom")}
 
-                  format             {:doc  "Formats codebase"
-                                      :task (shell
-                                              {:dir "src"}
-                                              "cljstyle fix")}}}
+                  deploy    {:doc  "deploy"
+                             :task (shell {:dir "."} "env CLOJARS_USERNAME=bigsy clojure -T:build deploy")}
+
+                  uberjar   {:doc              "builds the uberjar"
+                             :override-builtin true
+                             :task             (shell {:dir "."} "clojure -T:build uber")}
+
+                  format    {:doc  "Formats codebase"
+                             :task (shell
+                                     {:dir "src"}
+                                     "cljstyle fix")}}}
 
 
 

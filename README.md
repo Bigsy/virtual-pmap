@@ -49,3 +49,7 @@ The library includes comprehensive performance tests that demonstrate significan
 - More efficient resource utilization through Virtual Threads
 - Lower overhead for thread creation and management
 - Better scaling with large numbers of parallel operations
+
+
+## Todo
+- Add rate limiting via semaphores

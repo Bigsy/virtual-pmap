@@ -9,3 +9,5 @@
 /.lsp
 /.clj-kondo
 /*.iml
+pom.xml
+*.asc
