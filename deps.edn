@@ -1,5 +1,7 @@
 {:deps {org.clojure/clojure {:mvn/version "1.12.0"}}
  :aliases
- {:build {:deps {io.github.clojure/tools.build {:git/tag "v0.10.5" :git/sha "2a21b7a"}
+ {:dev {:extra-paths ["dev"]
+        :extra-deps {hashp/hashp {:mvn/version "0.2.2"}}}
+  :build {:deps {io.github.clojure/tools.build {:git/tag "v0.10.5" :git/sha "2a21b7a"}
                  slipset/deps-deploy {:mvn/version "RELEASE"}}
           :ns-default build}}}
