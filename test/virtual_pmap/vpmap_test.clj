@@ -126,3 +126,21 @@
           thread-names (map second results)]
       ;; Virtual threads should have different names
       (is (> (count (set thread-names)) 1)))))
+
+
+(deftest thread-limit-test
+  (let [thread-count (atom 0)
+        max-threads 3
+        test-fn (fn [x]
+                  (swap! thread-count inc)
+                  (Thread/sleep 100) ; Ensure threads overlap
+                  (swap! thread-count dec)
+                  x)]
+
+    (testing "respects thread limit"
+      (let [result (vpmap {:t-limit max-threads}
+                          test-fn
+                          (range 10))]
+        (is (= (range 10) result))
+        (is (<= @thread-count max-threads))))))
+
